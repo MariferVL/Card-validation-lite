@@ -1,0 +1,47 @@
+body {
+    text-shadow:  rgba(0, 0, 0, .5);
+    box-shadow: rgba(0, 0, 0, .5);
+    background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
+  }
+  
+
+  .success {
+    margin-top: 11%;
+  }
+
+.card-registration .select-input.form-control[readonly]:not([disabled]) {
+    font-size: 1rem;
+    line-height: 2.15;
+    padding-left: .75em;
+    padding-right: .75em;
+}
+
+.card-registration .select-arrow {
+    top: 13px;
+}
+
+.gradient-custom-4 {
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
+    border-color: transparent;
+}
+
+.btn-light{    
+    color: rgb(131, 140, 138);
+}
+
+.gradient-custom-4:hover {
+    color: rgb(132, 250, 220);
+    background:  white !important;
+    border-color: white !important;
+}
+
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+  color: #333;
+  text-shadow: none; /* Prevent inheritance from `body` */
+}
+
+
+
