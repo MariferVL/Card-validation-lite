@@ -11,27 +11,72 @@
 </head>
 
 <body>
-  <form action="/" method="post">
-    <input id="cardnumber"></input>
+  <form action="/" method="post"  class="h-100 bg-dark">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col">
+          <div class="card card-registration my-4">
+            <div class="row g-0">
+              <div class="col-xl-6 d-none d-xl-block">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/img4.webp"
+                  alt="Sample photo" class="img-fluid"
+                  style="border-top-left-radius: .25rem; border-bottom-left-radius: .25rem;" />
+              </div>
+              <div class="col-xl-6">
+                <div class="card-body p-md-5 text-black">
+                  <h3 class="mb-5 text-uppercase">Validación Tarjeta de Crédito</h3>
+  
+                  <div class="row">
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <input type="text" name="firstName" class="form-control form-control-lg" placeholder="Primer Nombre" required autofocus/>
+                      </div>
+
+                    </div>
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <input type="text" name="lastName" class="form-control form-control-lg" placeholder="Apellido" required />
+                      </div>
+                    </div>
+
+                    <div class="col-md-6 mb-4">
+                      <div class="form-outline">
+                        <input type="number" name="cardnumber" class="form-control form-control-lg" id="cardnumber" placeholder="Número de Tarjeta" required />
+                      </div>
+                    </div>
+                  </div>                            
+      
+                  <div class="form-check d-flex justify-content-center mb-5">
+                    <input class="form-check-input me-2" type="checkbox" value="" id="agreecheck" required />
+                    <label class="form-check-label" for="agreecheck">
+                      Estoy de acuerdo con todas las declaraciones de los <a href="#!" class="text-body"><u>Términos de Servicio</u></a>
+                    </label>
+                  </div>
+
+                  <div class="d-flex justify-content-center">
+                    <button type="button" class="btn btn-light btn-lg">Resetear</button>
+                    <button type="submit"
+                      class="btn btn-success btn-lg gradient-custom-4 ms-2" onclick="validate()">Validar</button>
+                  </div>
+  
+                  <p class="text-center text-muted mt-5 mb-0">¿Ya tienes una cuenta?<a href="#!"
+                      class="fw-bold text-body"><u>Ingresa aquí</u></a></p>       
+                <p class="mt-5 mb-3 text-muted text-center">&copy; Cardnect 2022</p>
+             
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </form>
-  <button onclick="validate()">Validar</button>
   <div id="result"></div>
   <script lang="javascript">
-    function validate() {
-      const valid = isValid(document.getElementById("cardnumber").value)
-      if (valid) {
-        // Show success in div#result
-      }
-      else {
-        // Show error message in div#result
-      }
-    }
-
-    function isValid(creditCardNumber){
-      // is creditCardNumber valid?
-      return false
-    }
+    
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  <script type= "text/javascript" src="src/app.js"></script>
 </body>
 
 </html>
