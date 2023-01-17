@@ -6,7 +6,7 @@ const successDiv = document.getElementById("success");
 
 const replacement = document.getElementById("toRemove");
 
-// Create new h3 and p elements
+//Create new h3 and p elements
 const tittleBox = document.createElement("h3");
 const msgBox = document.createElement("p");
 
