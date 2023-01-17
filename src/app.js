@@ -1,4 +1,3 @@
-
 // Test Data: 4137894711755904
 
 const dangerDiv = document.getElementById("danger");
@@ -12,28 +11,33 @@ const msgBox = document.createElement("p");
 
 let result;
 let description;
+let cardDigits;
 
+// Send validation msg to document
 function validate() {
   //Get card number from user
   const valid = isValid(document.getElementById("cardnumber").value)
+
+  const cardBrand = getCardBrand(cardDigits[0]);
+
   if (valid) {
-    //Show success in div#result
+    //Show success in div#success
     successDiv.appendChild(tittleBox);
     successDiv.appendChild(msgBox);
     document.getElementById("success").style.display = "inline";
     replacement.replaceWith(successDiv);
 
-    result = "Tarjeta Válida";
+    result = "Tarjeta " + cardBrand + " Válida";
     description = "Operación exitosa.<br>La información bancaria ingresada es correcta.";
   }
   else {
-    // Show error message in div#result
+    // Show error message in div#danger
     dangerDiv.appendChild(tittleBox);
     dangerDiv.appendChild(msgBox);
     document.getElementById("danger").style.display = "inline";
     replacement.replaceWith(dangerDiv);
 
-    result = "Tarjeta Inválida.";
+    result = "Tarjeta " + cardBrand + " Inválida.";
     description = "Debe ingresar nuevamente la información de su tarjeta.";
   }
   tittleBox.classList.add("alert-heading");
@@ -47,17 +51,21 @@ function validate() {
 
 }
 
+// Validate card number using Luhn's algorithm
 function isValid(creditCardNumber) {
   let valid = false;
 
   // Validate if card number is integer
   if (Number.isInteger(Number(creditCardNumber))) {
     // Split input
-    const cardDigits = creditCardNumber.split('');
+    cardDigits = creditCardNumber.split('');
 
-    let stringToNum = cardDigits.map(function(str) {
+    const reversedCardDigits = cardDigits.reverse();
+
+    const stringToNum = reversedCardDigits.map(function (str) {
       // using map() to convert array of strings to numbers
-      return parseInt(str); });
+      return parseInt(str);
+    });
 
     // Double value of every 2nd digit
     for (let index = 0; index < stringToNum.length; index += 2) {
@@ -73,11 +81,11 @@ function isValid(creditCardNumber) {
 
       }
     }
-    console.log("Lista post suma dig: ",stringToNum);
+    console.log("Lista post suma dig: ", stringToNum);
 
     // Calculate the sum using forEach
     let sumCardDigits = 0;
-    stringToNum.forEach(x => {sumCardDigits += x;});
+    stringToNum.forEach(x => { sumCardDigits += x; });
     console.log("Total digitos = " + sumCardDigits);
 
     //TODO: Check if the sum of all digits is 0
@@ -88,14 +96,33 @@ function isValid(creditCardNumber) {
   } else {
     alert("En 'Número de Tarjeta' debes ingresar sólo dígitos.")
   }
-  console.log("Resultado de valid :",valid);
+  console.log("Resultado de valid :", valid);
 
   return valid
 }
 
-
+// Fuction to sum digits in a number
 function sumDigits(n) {
   return (--n % 9) + 1;
 }
 
+// Function to get card financial institutuion (Visa, Mastercard or American Express)
+function getCardBrand(firstNumber) {
+  let brand;
+  switch (firstNumber) {
+  case 3:
+    brand = "American Express";
+    break;
+  case 4:
+    brand = "Visa";
+    break;
+  case 5:
+    brand = "Mastercard";
+    break;
 
+  default:
+    brand = "";
+    break;
+  }
+  return brand;
+}
