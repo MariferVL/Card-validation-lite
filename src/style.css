@@ -4,6 +4,10 @@ body {
   background: linear-gradient(to right, rgba(132, 250, 176, 1), rgba(143, 211, 244, 1));
 }
 
+
+.mb-5 {
+  margin-left: 11%;}
+
 #cardnumber {
   width: 211% !important;
 }
@@ -64,4 +68,10 @@ body {
   color: #333;
   text-shadow: none;
   /* Prevent inheritance from `body` */
+}
+
+@media (max-width: 800px) {
+  #cardnumber {
+    width: 100% !important;
+  }
 }
