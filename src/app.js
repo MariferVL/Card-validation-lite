@@ -1,4 +1,5 @@
 // Test Data: 4137894711755904
+// 4345591035905912
 
 const dangerDiv = document.getElementById("danger");
 const successDiv = document.getElementById("success");
@@ -17,8 +18,10 @@ let cardDigits;
 function validate() {
   //Get card number from user
   const valid = isValid(document.getElementById("cardnumber").value)
-
+  console.log("Número en posición 0: ", cardDigits[0]);
   const cardBrand = getCardBrand(cardDigits[0]);
+  console.log("Const  cardBrand: ", cardBrand);
+
 
   if (valid) {
     //Show success in div#success
@@ -28,7 +31,7 @@ function validate() {
     replacement.replaceWith(successDiv);
 
     result = "Tarjeta " + cardBrand + " Válida";
-    description = "Operación exitosa.<br>La información bancaria ingresada es correcta.";
+    description = "Operación exitosa. La información bancaria ingresada es correcta.";
   }
   else {
     // Show error message in div#danger
@@ -60,17 +63,20 @@ function isValid(creditCardNumber) {
     // Split input
     cardDigits = creditCardNumber.split('');
 
-    const reversedCardDigits = cardDigits.reverse();
+    // const reversedCardDigits = cardDigits.reverse();
 
-    const stringToNum = reversedCardDigits.map(function (str) {
+    // console.log("Paso2 -Numero invertido: ", reversedCardDigits);
+    const stringToNum = cardDigits.map(function (str) {
       // using map() to convert array of strings to numbers
       return parseInt(str);
     });
+    console.log("Lista pasada a N°: ", stringToNum);
 
     // Double value of every 2nd digit
     for (let index = 0; index < stringToNum.length; index += 2) {
       const doubleNum = Number(stringToNum[index]) * 2;
       stringToNum[index] = doubleNum;
+      console.log("Número doblado: Indice [" + index + "] " + doubleNum);
 
       // Check each doubleNum if is greater than 9
       if (doubleNum > 9) {
@@ -78,6 +84,8 @@ function isValid(creditCardNumber) {
         // Add the digits in doubleNum
         const digitsSum = sumDigits(doubleNum);
         stringToNum[index] = digitsSum;
+        console.log("Dígitos sumado: Indice [" + index + "] " + digitsSum);
+
 
       }
     }
@@ -110,13 +118,13 @@ function sumDigits(n) {
 function getCardBrand(firstNumber) {
   let brand;
   switch (firstNumber) {
-  case 3:
+  case "3":
     brand = "American Express";
     break;
-  case 4:
+  case "4":
     brand = "Visa";
     break;
-  case 5:
+  case "5":
     brand = "Mastercard";
     break;
 
