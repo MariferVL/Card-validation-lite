@@ -17,9 +17,7 @@ let cardDigits;
 function validate() {
   //Get card number from user
   const valid = isValid(document.getElementById("cardnumber").value)
-  console.log("Número en posición 0: ", cardDigits[0]);
   const cardBrand = getCardBrand(cardDigits[0]);
-  console.log("Const  cardBrand: ", cardBrand);
 
 
   if (valid) {
@@ -69,13 +67,11 @@ function isValid(creditCardNumber) {
       // using map() to convert array of strings to numbers
       return parseInt(str);
     });
-    console.log("Lista pasada a N°: ", stringToNum);
 
     // Double value of every 2nd digit
     for (let index = 0; index < stringToNum.length; index += 2) {
       const doubleNum = Number(stringToNum[index]) * 2;
       stringToNum[index] = doubleNum;
-      console.log("Número doblado: Indice [" + index + "] " + doubleNum);
 
       // Check each doubleNum if is greater than 9
       if (doubleNum > 9) {
@@ -83,19 +79,16 @@ function isValid(creditCardNumber) {
         // Add the digits in doubleNum
         const digitsSum = sumDigits(doubleNum);
         stringToNum[index] = digitsSum;
-        console.log("Dígitos sumado: Indice [" + index + "] " + digitsSum);
 
 
       }
     }
-    console.log("Lista post suma dig: ", stringToNum);
 
     // Calculate the sum using forEach
     let sumCardDigits = 0;
     stringToNum.forEach(x => { sumCardDigits += x; });
-    console.log("Total digitos = " + sumCardDigits);
 
-    //TODO: Check if the sum of all digits is 0
+    // Check if the sum of all digits is 0
     if (sumCardDigits % 10 === 0) {
       valid = true;
     }
@@ -103,7 +96,6 @@ function isValid(creditCardNumber) {
   } else {
     alert("En 'Número de Tarjeta' debes ingresar sólo dígitos.")
   }
-  console.log("Resultado de valid :", valid);
 
   return valid
 }
@@ -117,19 +109,19 @@ function sumDigits(n) {
 function getCardBrand(firstNumber) {
   let brand;
   switch (firstNumber) {
-  case "3":
-    brand = "American Express";
-    break;
-  case "4":
-    brand = "Visa";
-    break;
-  case "5":
-    brand = "Mastercard";
-    break;
+    case "3":
+      brand = "American Express";
+      break;
+    case "4":
+      brand = "Visa";
+      break;
+    case "5":
+      brand = "Mastercard";
+      break;
 
-  default:
-    brand = "";
-    break;
+    default:
+      brand = "";
+      break;
   }
   return brand;
 }
